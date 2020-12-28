@@ -26,8 +26,15 @@ RUN mkdir -p /var/lib/phpmyadmin/tmp
 RUN chown -R www-data:www-data /var/lib/phpmyadmin
 RUN ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 
+#install wordpress
+RUN wget https://wordpress.org/latest.tar.gz
+RUN tar -zxvf latest.tar.gz
+RUN mv wordpress /var/www/html/wordpress
+RUN chown -R www-data:www-data /var/www/html/wordpress/
+RUN chmod -R 755 /var/www/html/wordpress/
 
 COPY srcs* /
+RUN cp /wp-config.php /var/www/html/wordpress/wp-config.php
 RUN cp /config.inc.php /usr/share/phpmyadmin/config.inc.php
 ENTRYPOINT bash /service.sh && bash /mysql.sh && bash
 
