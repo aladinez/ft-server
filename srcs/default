@@ -18,14 +18,26 @@
 
 # Default server configuration
 #
+#
 server {
-	listen 80 default_server;
-	listen [::]:80 default_server;
+    listen 80 default_server;
+
+    server_name _;
+
+    return 301 https://$host$request_uri;
+    #return 301 https://google.com;
+}
+server {
+	#listen 80 default_server;
+	#listen [::]:80 default_server;
 
 	# SSL configuration
 	#
-	# listen 443 ssl default_server;
-	# listen [::]:443 ssl default_server;
+	listen 443 ssl default_server;
+	listen [::]:443 ssl default_server;
+
+	ssl_certificate		/etc/nginx/ssl/nginx.crt;
+	ssl_certificate_key	/etc/nginx/ssl/nginx.key;
 	#
 	# Note: You should disable gzip for SSL traffic.
 	# See: https://bugs.debian.org/773332
