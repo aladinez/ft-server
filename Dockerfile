@@ -1,4 +1,8 @@
 FROM debian:buster
+
+# ENV MACHINE_IP "$(docker-machine ip)"
+
+
 #set env as noninteractivemode
 ARG DEBIAN_FRONTEND=noninteractive
 #update and apgrade
