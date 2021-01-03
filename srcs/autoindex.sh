@@ -13,7 +13,8 @@ else
 	echo "${green}turning on the autoindex...${reset}"
 fi
 
-mv /etc/nginx/sites-available/default /default2
-mv /default1 /etc/nginx/sites-available/default
-mv /default2 /default1
+mv /etc/nginx/sites-available/default /tmp/default2
+mv /tmp/default1 /etc/nginx/sites-available/default
+
+mv /tmp/default2 /tmp/default1
 service nginx restart

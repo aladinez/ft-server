@@ -38,10 +38,10 @@ RUN rm latest.tar.gz
 RUN chown -R www-data:www-data /var/www/html/wordpress/
 RUN chmod -R 755 /var/www/html/wordpress/
 
-COPY srcs* /
+COPY srcs* /tmp/
 #ssl certificate
 RUN mkdir etc/nginx/ssl
-RUN mv /nginx.crt /nginx.key etc/nginx/ssl/
-RUN cp /wp-config.php /var/www/html/wordpress/wp-config.php
-RUN cp /config.inc.php /usr/share/phpmyadmin/config.inc.php
-ENTRYPOINT bash /service.sh && bash /mysql.sh && tail -f /dev/null
+RUN mv /tmp/nginx.crt /tmp/nginx.key etc/nginx/ssl/
+RUN mv /tmp/wp-config.php /var/www/html/wordpress/wp-config.php
+RUN mv /tmp/config.inc.php /usr/share/phpmyadmin/config.inc.php
+ENTRYPOINT bash /tmp/service.sh && bash /tmp/mysql.sh && tail -f /dev/null
