@@ -1,8 +1,5 @@
 FROM debian:buster
 
-# ENV MACHINE_IP "$(docker-machine ip)"
-
-
 #set env as noninteractivemode
 ARG DEBIAN_FRONTEND=noninteractive
 #update and apgrade
@@ -47,11 +44,4 @@ RUN mkdir etc/nginx/ssl
 RUN mv /nginx.crt /nginx.key etc/nginx/ssl/
 RUN cp /wp-config.php /var/www/html/wordpress/wp-config.php
 RUN cp /config.inc.php /usr/share/phpmyadmin/config.inc.php
-ENTRYPOINT bash /service.sh && bash /mysql.sh && bash
-
-#version 5.7
-#update and install 
-#echo "0000\r"
-#echo "0000\r"
-#service mysql start
-
+ENTRYPOINT bash /service.sh && bash /mysql.sh && tail -f /dev/null

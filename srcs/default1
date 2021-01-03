@@ -57,7 +57,7 @@ server {
 
 	server_name _;
 
-	autoindex on;
+	autoindex off;
 
 	location / {
 		# First attempt to serve request as file, then
